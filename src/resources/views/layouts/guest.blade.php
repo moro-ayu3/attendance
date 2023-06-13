@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="ja">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance</title>
+  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  @yield('css')
+</head>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <div class="header-utilities">
+        <h3 class="header__logo">
+          Atte
+        </h3>
+      </div>
+    </div>
+  </header>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <main>
+    @yield('content')
+  </main>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
-    </body>
+  <fooder>
+    <div class="copy-right">
+      <small class="copy_right">Atte,inc.</small>
+    </div>
+  </footer>
+</body>
+
 </html>
