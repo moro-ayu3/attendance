@@ -11,11 +11,17 @@
 
 <div class="attendance__content">
   <div class="attendance__panel">
-    <form class="attendance__button">
+    <form class="attendance__button" action="/" method="post">
       <button class="attendance__button-submit" type="submit">勤務開始</button>
     </form>
-    <form class="attendance__button">
+    <form class="attendance__button" action="/" method="post">
       <button class="attendance__button-submit" type="submit">勤務終了</button>
+    </form>
+    <form class="attendance__button" action="/" method="post">
+      <button class="attendance__button-submit" type="submit">休憩開始</button>
+    </form>
+    <form class="attendance__button-submit" action="/" method="post">
+      <button class="attendance__button-submit" type="submit">休憩終了</button>
     </form>
   </div>
   <div class="attendance-table">

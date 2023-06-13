@@ -2,6 +2,7 @@
   margin: 0 auto;
   padding: 30px 15px;
   max-width: 1230px;
+  background-color: #ddd;
 }
 
 .register-form__heading {
@@ -57,4 +58,12 @@
 .login__link {
   margin-top: 20px;
   text-align: center;
+}
+
+.login__message {
+  color: #ddd;
+}
+
+.login__button-submit {
+  color: blue;
 }

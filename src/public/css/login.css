@@ -2,6 +2,7 @@
   margin: 0 auto;
   padding: 30px 15px;
   max-width: 1230px;
+  background-color: #ddd;
 }
 
 .login-form__heading {
@@ -17,10 +18,6 @@
 
 .form__group {
   margin-bottom: 5px;
-}
-
-.form__group-title {
-  text-align: left;
 }
 
 .form__error {
@@ -57,4 +54,12 @@
 .register__link {
   margin-top: 20px;
   text-align: center;
+}
+
+.register__message {
+  color: #ddd;
+}
+
+.register__button-submit {
+  color: blue;
 }
