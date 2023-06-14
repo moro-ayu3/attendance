@@ -11,10 +11,7 @@ class Stamp extends Model
 
      protected $guarded = array('id');
 
-     protected $fillable = [
-        'content',
-        'submit'
-    ];
+     protected $fillable = ['submit'];
 
     public function user()
     {

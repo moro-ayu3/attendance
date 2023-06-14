@@ -16,10 +16,11 @@ class StampController extends Controller
       return view('index', ['stamps' => $stamps, 'user' => $user]);
     }
 
-    public function store(StampRequest, $request)
+    public function store(StampRequest $request)
     {
-      $stamp = $request->only(['content', 'submit']);
+      $user = Auth::user();
+      $stamp = $request->only(['submit']);
       Stamp::create($stamp);
-      return view('index', ['stamps' => $stamps]);
+      return redirect('/')->with('message', '福場凛太郎さんお疲れ様です！');
     }
 }

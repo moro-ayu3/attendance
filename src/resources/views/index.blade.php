@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="attendance__alert">
-  // メッセージ機能
+  @if(session('message'))
+    {{ session('message') }}
+  @endif
 </div>
 
 <div class="attendance__content">
@@ -14,13 +16,13 @@
     <form class="attendance__button" action="/" method="post">
       <button class="attendance__button-submit" type="submit">勤務開始</button>
     </form>
-    <form class="attendance__button" action="/" method="post">
-      <button class="attendance__button-submit" type="submit">勤務終了</button>
+    <form class="attendance__button-1" action="/" method="post">
+        <button class="attendance__button-submit" type="submit">勤務終了</button>
     </form>
     <form class="attendance__button" action="/" method="post">
       <button class="attendance__button-submit" type="submit">休憩開始</button>
     </form>
-    <form class="attendance__button-submit" action="/" method="post">
+    <form class="attendance__button-1" action="/" method="post">
       <button class="attendance__button-submit" type="submit">休憩終了</button>
     </form>
   </div>

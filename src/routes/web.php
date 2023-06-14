@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
      Route::get('/', [StampController::class, 'index']);
+     Route::post('/', [StampController::class, 'store']);
 });
 
 require __DIR__.'/auth.php';

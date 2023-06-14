@@ -1,5 +1,5 @@
 .header {
-  background: #000;
+  background: #fff;
 }
 
 .header__inner {
@@ -15,7 +15,7 @@
 }
 
 .header__logo {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   font-weight: bold;
   font-size: 24px;
@@ -32,14 +32,26 @@
 }
 
 .header-nav__link {
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
-.header-nav__button {
-  border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+.main {
+  background-color: #ddd;
+}
+
+.footer {
+  background-color: #fff;
+}
+
+.copy-right {
+  margin: 0 auto;
+  padding: 100px 15px;
+  max-width: 1230px;
+}
+
+.copy_right {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
 }

@@ -15,22 +15,26 @@ class StampsTableSeeder extends Seeder
     public function run()
     {
         $param = [
-        'submit' => '勤務開始'
+        'user_id' => '0',
+        'submit' => '0'
          ];
         DB::table('stamps')->insert($param);
 
         $param = [
-        'submit' => '勤務終了'
+        'user_id' => '1',
+        'submit' => '1'
         ];
         DB::table('stamps')->insert($param);
 
         $param = [
-        'submit' => '休憩開始'
+        'user_id' => '2',
+        'submit' => '2'
         ];
         DB:table('stamps')->insert($param);
 
         $param = [
-        'submit' => '休憩終了'
+        'user_id' => '3',
+        'submit' => '3'
         ];
         DB::table('stamps')->insert($param);
     }
