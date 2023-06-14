@@ -11,3 +11,5 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
      Route::get('/', [StampController::class, 'index']);
 });
+
+require __DIR__.'/auth.php';

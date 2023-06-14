@@ -14,5 +14,10 @@ class Date extends Model
         'name',
         'time',
     ];
+
+    public function stamps()
+    {
+        return $this->hasMany(Stamp::class);
+    }
 }
 

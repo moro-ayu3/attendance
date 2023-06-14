@@ -38,7 +38,7 @@
     <div class="form__group">
       <div class="form__group-content">
         <div class="form__input--text">
-          <input type="password" name="password" placeholder="パスワード"/>
+          <input type="password" name="password" placeholder="パスワード" value="{{ old('password') }}"/>
         </div>
         <div class="form__error">
           @error('password')

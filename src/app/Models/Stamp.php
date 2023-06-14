@@ -11,5 +11,17 @@ class Stamp extends Model
 
      protected $guarded = array('id');
 
-     protected $fillable = ['submit'];
+     protected $fillable = [
+        'content',
+        'submit'
+    ];
+
+    public function user()
+    {
+        return $this->BelongsTo(User::class);
+    }
+    public function date()
+    {
+        return $this->BelongsTo(Date::class);
+    }
 }
