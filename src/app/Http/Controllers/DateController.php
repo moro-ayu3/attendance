@@ -11,15 +11,9 @@ class DateController extends Controller
 {
     public function index(Request $request)
     {
-        $request->validate([
-            'date' => 'required|integer',
-            'name' => 'required|string|max:191',
-            'time' => 'required|integer',
-        ]);
-
         $user = Auth::user();
+        $dates = Date::Paginate(5);
         $dates->$user->dates;
-        $dates = Date::Pagenate(5);
         $date = $request->only(['date', 'name', 'time']);
         $date = Carbon::now()
               ->format('Y-m-d', 'H:i:s');
