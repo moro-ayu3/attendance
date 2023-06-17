@@ -40,11 +40,11 @@
     </div>
   </header>
 
-  <main>
+  <main class="main">
     @yield('content')
   </main>
 
-  <fooder>
+  <fooder class="fooder">
     <div class="copy-right">
       <small class="copy_right">Atte,inc.</small>
     </div>

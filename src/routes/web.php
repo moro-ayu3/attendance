@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
      Route::get('/', [StampController::class, 'index']);
-     Route::post('/attendance', [StampController::class, 'store']);
+     Route::post('/', [StampController::class, 'store']);
      Route::get('/attendance', [DateController::class, 'index']);
 });
 

@@ -1,5 +1,6 @@
 .header {
   background: #fff;
+  height: 50px;
 }
 
 .header__inner {
@@ -34,18 +35,24 @@
 .header-nav__link {
   color: #000;
   text-decoration: none;
+  margin-right: 30px;
 }
 
 .main {
   background-color: #ddd;
+  height: 50%;
 }
 
 .footer {
   background-color: #fff;
+  height: 50px;
 }
 
 .copy-right {
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 100px 15px;
   max-width: 1230px;
 }
