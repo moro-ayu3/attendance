@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DateRequest;
+use Illuminate\Http\Request;
 use App\Models\Date;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class DateController extends Controller
 {
-    public function index(DateRequest $request)
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $dates->$user->dates;
         $dates = Date::Paginate(5);
         $date = $request->only(['date', 'name', 'time']);
         $date = Carbon::now()

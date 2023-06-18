@@ -15,9 +15,10 @@ class CreateStampsTable extends Migration
     {
         Schema::create('stamps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->tinyInteger('submit');
-            $table->timestamps();
+            $table->integer('user_id');
+            $table->time('submit');
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 

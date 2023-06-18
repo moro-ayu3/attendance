@@ -18,7 +18,8 @@ class CreateDatesTable extends Migration
             $table->date('date');
             $table->string('name');
             $table->time('time');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 
