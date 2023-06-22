@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  @foreach($attendancies as $attendance)
+  @foreach($attendances as $attendance)
   <h3 class="attendance-date"><a href="#">&lt;</a>$nbsp;{{ $attendance->date('Y-m-d') }}&nbsp;<a href="#">$gt;</a>
   </h3>
   @endforeach
@@ -18,7 +18,7 @@
         <th class="attendance-table__header">休憩時間</th>
         <th class="attendance-table__header">勤務時間</th>
       </tr>
-      @foreach ($attendancies as $attendance)
+      @foreach ($attendances as $attendance)
       <tr class="attendance-table__row">
         <td class="attendance-table__item">{{ $attendance->user_id }}</td>
         <td class="attendance-table__item">{{ $attendance->work_start_time('H:i:s') }}</td>

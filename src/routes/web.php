@@ -12,7 +12,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function () {
      Route::get('/', [AttendanceController::class, 'index']);
      Route::post('/', [AttendanceController::class, 'store']);
-     Route::get('/dates', [AttendanceController::class, 'show']);
+     Route::get('/attendances', [AttendanceController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

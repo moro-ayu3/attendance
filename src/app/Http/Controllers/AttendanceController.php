@@ -15,7 +15,7 @@ class AttendanceController extends Controller
     public function index()
     {
       $user = Auth::user();
-      $attendancies = $user->attendancies;
+      $attendances = $user->attendances;
       return view('index', ['attendancies' => $attendancies, 'user' => $user]);
     }
 
@@ -31,13 +31,13 @@ class AttendanceController extends Controller
     public function show()
     {
         $user = Auth::user();
-        $result = Attendance::Paginate(5);
+        $attendances = Attendance::Paginate(5);
         $rest_start_time = new Carbon('2023-06-22 15:00:00');
         $rest_end_time = new Carbon('2023-06-22 16:00:00');
         echo $rest_start_time->diffInHours($rest_end_time);
         $work_start_time = new Carbon('2023-06-22 10:00:00');
         $work_end_time = new Carbon('2023-06-22 19:00:00');
         echo $work_start_time->diffInHours($work_end_time);
-        return view('attendance', ['attendance' => $result, 'rest_start_time' => $rest_start_time, 'rest_end_time'=> $rest_end_time, 'work_start_time' => $work_start_time, 'work_end_time' => $work_end_time, 'user' => $user]);
+        return view('attendance', ['attendances' => $attendances, 'rest_start_time' => $rest_start_time, 'rest_end_time'=> $rest_end_time, 'work_start_time' => $work_start_time, 'work_end_time' => $work_end_time, 'user' => $user]);
     }
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AttendanciesTableSeeder extends Seeder
+class AttendancesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,6 +20,6 @@ class AttendanciesTableSeeder extends Seeder
         'work_start_time' => '10:00:00',
         'work_end_time' => '19:00:00',
          ];
-        DB::table('attendancies')->insert($param);
+        DB::table('attendances')->insert($param);
     }
 }
