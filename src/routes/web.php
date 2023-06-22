@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StampController;
-use App\Http\Controllers\DateController;
+use App\Http\Controllers\AttendanceController;
+
 
 
 Route::get('/', function () {
@@ -10,9 +10,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-     Route::get('/', [StampController::class, 'index']);
-     Route::post('/stamps', [StampController::class, 'store']);
-     Route::get('/attendance', [DateController::class, 'index']);
+     Route::get('/', [AttendanceController::class, 'index']);
+     Route::post('/', [AttendanceController::class, 'store']);
+     Route::get('/dates', [AttendanceController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

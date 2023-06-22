@@ -22,33 +22,37 @@
 
 <div class="attendance__content">
   <div class="attendance__panel">
-    <div class="attendance__panel-1">
-      <form class="attendance__button" action="/stamps" method="post">
-        @csrf
-        <label class="attendance__button-submit">勤務開始</label>
-        <input type="hidden" name="submit">
-      </form>
+    <div class="attendance__panel-z">
+      <div class="attendance__panel-1">
+        <form class="attendance__button" action="/" method="post">
+          @csrf
+          <label class="attendance__button-submit">勤務開始</label>
+          <input type="hidden" name="submit">
+        </form>
+      </div>
+      <div class="attendance__panel-2">
+        <form class="attendance__button-1" action="/" method="post">
+          @csrf
+          <label class="attendance__button-submit">勤務終了</label>
+          <input type="hidden" name="submit">
+        </form>
+      </div>
     </div>
-    <div class="attendance__panel-1">
-      <form class="attendance__button" action="/stamps" method="post">
-        @csrf
-        <label class="attendance__button-submit">休憩開始</label>
-        <input type="hidden" name="submit">
-      </form>
-    </div>
-    <div class="attendance__panel-2">
-      <form class="attendance__button-1" action="/stamps" method="post">
-        @csrf
-        <label class="attendance__button-submit">勤務終了</label>
-        <input type="hidden" name="submit">
-      </form>
-    </div>
-    <div class="attendamce__panel-2">
-      <form class="attendance__button-1" action="/stamps" method="post">
-        @csrf
-        <label class="attendance__button-submit">休憩終了</label>
-        <input type="hidden" name="submit">
-      </form>
+    <div class="attendance__panel-z">
+      <div class="attendance__panel-3">
+        <form class="attendance__button" action="/" method="post">
+          @csrf
+          <label class="attendance__button-submit">休憩開始</label>
+          <input type="hidden" name="submit">
+        </form>
+      </div>
+      <div class="attendamce__panel-4">
+        <form class="attendance__button-1" action="/" method="post">
+          @csrf
+          <label class="attendance__button-submit">休憩終了</label>
+          <input type="hidden" name="submit">
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stamp extends Model
+class Attendance extends Model
 {
     use HasFactory;
 
      protected $guarded = array('id');
 
-     protected $fillable = ['submit'];
+     protected $fillable = [
+        'date',
+        'work_start_time',
+    ];
 
     public function user()
     {
         return $this->BelongsTo(User::class);
     }
-    public function date()
+    public function rest()
     {
-        return $this->BelongsTo(Date::class);
+        return $this->hasMany(Rest::class);
     }
 }

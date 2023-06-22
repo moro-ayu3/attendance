@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(StampsTableSeeder::class);
-        $this->call(DatesTableSeeder::class);
+        $this->call(AttendanciesTableSeeder::class);
+        $this->call(RestsTableSeeder::class);
     }
 }

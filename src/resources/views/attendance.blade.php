@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-  @foreach($dates as $date)
-  <h3 class="attendance-date"><a href="#">&lt;</a>$nbsp;{{ $date->date('Y-m-d') }}&nbsp;<a href="#">$gt;</a>
+  @foreach($attendancies as $attendance)
+  <h3 class="attendance-date"><a href="#">&lt;</a>$nbsp;{{ $attendance->date('Y-m-d') }}&nbsp;<a href="#">$gt;</a>
   </h3>
   @endforeach
   <div class="attendance-table">
@@ -20,9 +20,9 @@
       </tr>
       @foreach ($dates as $date)
       <tr class="attendance-table__row">
-        <td class="attendance-table__item">{{ $date->name }}</td>
-        <td class="attendance-table__item">{{ $date->time('H:i:s') }}</td>
-        <td class="attendance-table__item">{{ $date->time('H:i:s') }}</td>
+        <td class="attendance-table__item">{{ $attendance->user_id }}</td>
+        <td class="attendance-table__item">{{ $attendance->work_start_time('H:i:s') }}</td>
+        <td class="attendance-table__item">{{ $attendance->work_end_time('H:i:s') }}</td>
         <td class="attendance-table__item">{{ $date->time('H:i:s') }}</td>
         <td class="attendance-table__item">{{ $date->time('H:i:s') }}</td>
       </tr>
