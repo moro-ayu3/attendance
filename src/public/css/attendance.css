@@ -26,6 +26,7 @@ a {
   margin: 30px auto;
   width: 70%;
   text-align: center;
+  border: 1px solid #000;
 }
 
 .attendance-table__inner {
@@ -33,18 +34,20 @@ a {
 }
 
 .attendance-table__row {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000;
 }
 
 .attendance-table__header {
   padding: 12px;
   width: 20%;
   font-weight: bold;
+  border-bottom: 1px solid #000;
 }
 
 .attendance-table__item {
   padding: 12px;
   width: 20%;
+  border-bottom: 1px solid #000;
 }
 
 .table-page {

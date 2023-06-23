@@ -27,14 +27,14 @@
         <form class="attendance__button" action="/" method="post">
           @csrf
           <label class="attendance__button-submit">勤務開始</label>
-          <input type="hidden" name="submit" value="送信">
+          <input type="hidden" name="work_start_time" value="{{ $attendance['work_start_time'] }}">
         </form>
       </div>
       <div class="attendance__panel-2">
         <form class="attendance__button-1" action="/" method="post">
           @csrf
           <label class="attendance__button-submit">勤務終了</label>
-          <input type="hidden" name="submit" value="送信">
+          <input type="hidden" name="work_end_time" value="{{ $attendance['work_start_time'] }}">
         </form>
       </div>
     </div>
@@ -43,14 +43,14 @@
         <form class="attendance__button" action="/" method="post">
           @csrf
           <label class="attendance__button-submit">休憩開始</label>
-          <input type="hidden" name="submit" value="送信">
+          <input type="hidden" name="rest_start_time" value="{{ $rest['rest_start_time'] }}">
         </form>
       </div>
       <div class="attendamce__panel-4">
         <form class="attendance__button-1" action="/" method="post">
           @csrf
           <label class="attendance__button-submit">休憩終了</label>
-          <input type="hidden" name="submit" value="送信">
+          <input type="hidden" name="rest_end_time" value="{{ $rest['rest_end_time'] }}">
         </form>
       </div>
     </div>

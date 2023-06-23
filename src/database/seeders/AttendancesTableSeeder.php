@@ -15,7 +15,7 @@ class AttendancesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-        'user_id' => '1',
+        'user_id' => 'テスト太郎 ',
         'date' => '2023-06-22',
         'work_start_time' => '10:00:00',
         'work_end_time' => '19:00:00',
