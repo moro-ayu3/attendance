@@ -15,11 +15,6 @@ class RestsTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-         'attendance_id' => '1',
-         'rest_start_time' => '12:00:00',
-         'rest_end_time' => '13:00:00',
-        ];
-        DB::table('rests')->insert($param);
+        Rest::factory()->count(3)->create();
     }
 }

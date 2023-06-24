@@ -22,8 +22,8 @@
         <td class="attendance-table__item">{{ $attendance->user_id }}</td>
         <td class="attendance-table__item">{{ $attendance->work_start_time }}</td>
         <td class="attendance-table__item">{{ $attendance->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $rest_start_time->diffInHours($rest_end_time) }}</td>
-        <td class="attendance-table__item">{{ $work_start_time->diffInHours($work_end_time) }}</td>
+        <td class="attendance-table__item">{{ $rest_start_time->diffInHours($rest_end_time)->format('H:i:s') }}</td>
+        <td class="attendance-table__item">{{ $work_start_time->diffInHours($work_end_time)->format('H:i:s') }}</td>
       </tr>
       @endforeach
     </table>

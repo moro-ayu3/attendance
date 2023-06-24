@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AttendancesTableSeeder::class);
-        $this->call(RestsTableSeeder::class);
+       Attendance::factory(50)->create();
+       Rest::factory(50)->create();
     }
 }
