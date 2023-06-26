@@ -12,7 +12,8 @@ class Rest extends Model
      protected $guarded = array('id');
 
      protected $fillable = [
-        'rest_start_time'
+        'rest_start_time',
+        'rest_end_time'
     ];
 
     public function attendance()

@@ -15,18 +15,26 @@ class AttendanceController extends Controller
 {
     public function index()
     {
-      $user = Auth::user();
-      return view('index', ['user' => $user]);
+      return view('index');
     }
 
-    public function store(AttendanceRequest $request)
+    public function workStart()
     {
-      $user = Auth::user();
-      $attendance = $request->only(['date', 'work_start_time', 'work_end_time']);
-      $rest = $request->only(['rest_start_time', 'rest_end_time']);
-      Attendance::create($attendance);
-      Rest::create($rest);
-      return view('attendance', ['attendance' => $attendance, 'rest' => $rest, 'user' => $user])->with('message', '福場凛太郎さんお疲れ様です！');
+      $id = Auth::id();
+
+      $dt = new Carbon();
+      $date = $dt->toDateString();
+      $time = $dt->toTimeString();
+
+      $data = [
+        'user_id' => $id,
+        'date' => $date,
+        'work_start_time' => $time,
+      ];
+
+      Attendance::create($data);
+      
+      return redirect('/');
     }
 
     public function show()

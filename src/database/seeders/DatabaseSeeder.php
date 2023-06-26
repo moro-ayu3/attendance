@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       Attendance::factory(50)->create();
-       Rest::factory(50)->create();
+       //
     }
 }

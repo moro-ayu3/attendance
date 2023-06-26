@@ -6,9 +6,7 @@
 
 @section('content')
 <div class="attendance__alert">
-  @if(session('message'))
-    {{ session('message') }}
-  @endif
+  <h1>{{ Auth::user()->name }}さんお疲れ様です！</h1>
 </div>
   @if ($errors->any())
   <div class="attendance__alert--danger">
@@ -24,19 +22,15 @@
   <div class="attendance__panel">
     <div class="attendance__panel-z">
       <div class="attendance__panel-1">
-        <form class="attendance__button" action="/" method="post">
+        <form class="attendance__button" action="/work/start" method="post">
           @csrf
-          <label class="attendance__button-submit">勤務開始</label>
-          <input type="hidden" name="date" class="attendance__button-submit">
-          <input type="hidden" name="work_start_time" class="attendance__button-submit">
+          <button class="attendance__button-submit">勤務開始</button>
         </form>
       </div>
       <div class="attendance__panel-2">
         <form class="attendance__button-1" action="/" method="post">
           @csrf
-          <label class="attendance__button-submit">勤務終了</label>
-          <input type="hidden" name="date" class="attendance__button-submit">
-          <input type="hidden" name="work_end_time" class="attendance__button-submit">
+          <button class="attendance__button-submit">勤務終了</button>
         </form>
       </div>
     </div>
@@ -44,17 +38,13 @@
       <div class="attendance__panel-3">
         <form class="attendance__button" action="/" method="post">
           @csrf
-          <label class="attendance__button-submit">休憩開始</label>
-          <input type="hidden" name="attendance_id" class="attendance__button-submit">
-          <input type="hidden" name="rest_start_time" class="attendance__button-submit">
+          <button class="attendance__button-submit">休憩開始</button>
         </form>
       </div>
       <div class="attendamce__panel-4">
         <form class="attendance__button-1" action="/" method="post">
           @csrf
-          <label class="attendance__button-submit">休憩終了</label>
-          <input type="hidden" name="attendance_id" class="attendance__button-submit">
-          <input type="hidden" name="rest_end_time" class="attendance__button-submit">
+          <button class="attendance__button-submit">休憩終了</button>
         </form>
       </div>
     </div>
