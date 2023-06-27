@@ -15,6 +15,7 @@ class AttendanceController extends Controller
 {
     public function index()
     {
+      $attendances = Attendance::all();
       return view('index');
     }
 
@@ -36,6 +37,27 @@ class AttendanceController extends Controller
       
       return redirect('/');
     }
+
+    public function workEnd()
+    {
+      $id = Auth::id();
+
+      $dt = new carbon;
+      $date = $dt->toDateString();
+      $time = $dt->toTimeString();
+      $time1 = $dt->toTimeString();
+
+      $data = [
+        'user_id' => $id,
+        'date' => $date,
+        'work_start_time' => $time,
+        'work_end_time' => $time1
+      ];
+      Attendance::update($data);
+      
+      return redirect('/');
+    }
+
 
     public function show()
     {

@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function () {
      Route::get('/', [AttendanceController::class, 'index']);
      Route::post('/work/start', [AttendanceController::class, 'workStart']);
+     Route::post('/work/end', [AttendanceController::class, 'workEnd']);
      Route::get('/attendances', [AttendanceController::class, 'show']);
 });
 
