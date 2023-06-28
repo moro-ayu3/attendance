@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-  @foreach($attendances as $attendance)
-  <h3 class="attendance-date"><a href="#">&lt;</a>{{ $attendance->date }}<a href="#">&gt;</a></h3>
+  @foreach($datas as $data)
+  <h3 class="attendance-date"><a href="#">&lt;</a>{{ $data->date }}<a href="#">&gt;</a></h3>
   @endforeach
   <div class="attendance-table">
     <table class="attendance-table__inner">
@@ -17,19 +17,19 @@
         <th class="attendance-table__header">休憩時間</th>
         <th class="attendance-table__header">勤務時間</th>
       </tr>
-      @foreach ($attendances as $attendance)
+      @foreach ($datas as $data)
       <tr class="attendance-table__row">
-        <td class="attendance-table__item">{{ $attendance->user_id }}</td>
-        <td class="attendance-table__item">{{ $attendance->work_start_time }}</td>
-        <td class="attendance-table__item">{{ $attendance->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $rest_start_time->diffInHours($rest_end_time)->format('H:i:s') }}</td>
-        <td class="attendance-table__item">{{ $work_start_time->diffInHours($work_end_time)->format('H:i:s') }}</td>
+        <td class="attendance-table__item">{{ $data->user_id }}</td>
+        <td class="attendance-table__item">{{ $data->work_start_time }}</td>
+        <td class="attendance-table__item">{{ $data->work_end_time }}</td>
+        <td class="attendance-table__item">{{ $time->diffInHours($time1) }}</td>
+        <td class="attendance-table__item">{{ $time->diffInHours($time1) }}</td>
       </tr>
       @endforeach
     </table>
   </div>
   <div class="table-page">
-      {{ $attendances->appends(request()->input())->links('pagination::bootstrap-4') }}
+      {{ $datas->appends(request()->input())->links('pagination::bootstrap-4') }}
   </div>
 </div>
 @endsection

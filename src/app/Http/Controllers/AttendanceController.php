@@ -15,7 +15,6 @@ class AttendanceController extends Controller
 {
     public function index()
     {
-      $attendances = Attendance::all();
       return view('index');
     }
 
@@ -53,22 +52,76 @@ class AttendanceController extends Controller
         'work_start_time' => $time,
         'work_end_time' => $time1
       ];
-      Attendance::update($data);
+      Attendance::find($id)->update($data);
       
       return redirect('/');
     }
 
+    public function restStart()
+    {
+      $id = Auth::id();
+
+      $dt = new Carbon();
+      $time = $dt->toTimeString();
+
+      $data = [
+        'attendance_id' => $id,
+        'rest_start_time' => $time,
+      ];
+
+      Rest::create($data);
+      
+      return redirect('/');
+    }
+
+    public function restEnd()
+    {
+      $id = Auth::id();
+
+      $dt = new carbon;
+      $time = $dt->toTimeString();
+      $time1 = $dt->toTimeString();
+
+      $data = [
+        'attendance_id' => $id,
+        'rest_start_time' => $time,
+        'rest_end_time' => $time1
+      ];
+      Rest::find($id)->update($data);
+      
+      return redirect('/');
+    }
 
     public function show()
     {
-        $user = Auth::user();
-        $attendances = Attendance::Paginate(5);
-        $rest_start_time = new Carbon('2023-06-22 15:00:00');
-        $rest_end_time = new Carbon('2023-06-22 16:00:00');
-        echo $rest_start_time->diffInHours($rest_end_time)->format('H:i:s');
-        $work_start_time = new Carbon('2023-06-22 10:00:00');
-        $work_end_time = new Carbon('2023-06-22 19:00:00');
-        echo $work_start_time->diffInHours($work_end_time)->format('H:i:s');
-        return view('attendance', ['attendances' => $attendances, 'rest_start_time' => $rest_start_time, 'rest_end_time'=> $rest_end_time, 'work_start_time' => $work_start_time, 'work_end_time' => $work_end_time, 'user' => $user]);
+        $datas = Attendance::Paginate(5);
+
+        $dt = new Carbon;
+        $time = $dt->toTimeString();
+        $time1 = $dt->toTimeString();
+ 
+        $data = [
+        'rest_start_time' => $time,
+        'rest_end_time' => $time1
+      ];
+
+        echo $time->diffInHours($time1);
+        echo $time->diffInMinutes($time1);
+        echo $time->diffInSeconds($time1);
+
+        $dt = new Carbon;
+        $time = $dt->toTimeString();
+        $time1 = $dt->toTimeString();
+ 
+        $data = [
+        'work_start_time' => $time,
+        'work_end_time' => $time1
+      ];
+
+        echo $time->diffInHours($time1);
+        echo $time->diffInMinutes($time1);
+        echo $time->diffInSeconds($time1);
+
+        return view('attendance', ['datas' => $datas, 'data' => $data]);
     }
 }

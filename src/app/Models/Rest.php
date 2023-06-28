@@ -12,6 +12,7 @@ class Rest extends Model
      protected $guarded = array('id');
 
      protected $fillable = [
+        'attendance_id',
         'rest_start_time',
         'rest_end_time'
     ];
