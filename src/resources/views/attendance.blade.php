@@ -19,11 +19,11 @@
       </tr>
       @foreach ($datas as $data)
       <tr class="attendance-table__row">
-        <td class="attendance-table__item">{{ $data->user_id }}</td>
+        <td class="attendance-table__item">{{ Auth::user()->name }}</td>
         <td class="attendance-table__item">{{ $data->work_start_time }}</td>
         <td class="attendance-table__item">{{ $data->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $time->diffInHours($time1) }}</td>
-        <td class="attendance-table__item">{{ $time->diffInHours($time1) }}</td>
+        <td class="attendance-table__item">{{ $data($time)->diffInHours->diffInMinutes->diffInSeconds($data($time1)) }}</td>
+        <td class="attendance-table__item">{{ $data($time)->diffInHours->diffInMinutes->diffInSeconds($data($time1)) }}</td>
       </tr>
       @endforeach
     </table>
