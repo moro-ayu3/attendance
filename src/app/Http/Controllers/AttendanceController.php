@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AttendanceRequest;
-use App\Http\Requests\RestRequest;
+use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\Rest;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +13,10 @@ use Carbon\Carbon;
 class AttendanceController extends Controller
 {
     public function index()
-    {
-      return view('index');
+    { 
+      $attendances = Attendance::all();
+      $rests = Rest::all();
+      return view('index',['attendances' => $attendances, 'rests' => $rests]);
     }
 
     public function workStart()
@@ -44,50 +45,43 @@ class AttendanceController extends Controller
       $dt = new carbon;
       $date = $dt->toDateString();
       $time = $dt->toTimeString();
-      $time1 = $dt->toTimeString();
+    
 
       $data = [
-        'user_id' => $id,
-        'date' => $date,
-        'work_start_time' => $time,
-        'work_end_time' => $time1
+        'work_end_time' => $time
       ];
-      Attendance::find($id)->update($data);
+      
+      Attendance::where('user_id', $id)->where('date', $date)->update($data);
       
       return redirect('/');
     }
 
-    public function restStart()
+    public function restStart(Request $request)
     {
-      $id = Auth::id();
 
       $dt = new Carbon();
       $time = $dt->toTimeString();
 
-      $data = [
-        'attendance_id' => $id,
+      $rest = $request->only([
         'rest_start_time' => $time,
-      ];
+      ]);
 
-      Rest::create($data);
+      Rest::create($rest);
       
       return redirect('/');
     }
 
-    public function restEnd()
+    public function restEnd(Request $request)
     {
-      $id = Auth::id();
 
       $dt = new carbon;
-      $time = $dt->toTimeString();
-      $time1 = $dt->toTimeString();
+      $time = $dt->toTimeString();    
 
-      $data = [
-        'attendance_id' => $id,
-        'rest_start_time' => $time,
-        'rest_end_time' => $time1
-      ];
-      Rest::find($id)->update($data);
+      $rest = $request->only([ 
+        'rest_end_time' => $time
+      ]);
+
+      Rest::find($request->id)->update($rest);
       
       return redirect('/');
     }
