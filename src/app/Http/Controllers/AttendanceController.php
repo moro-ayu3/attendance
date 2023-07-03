@@ -34,6 +34,10 @@ class AttendanceController extends Controller
       ];
 
       Attendance::create($data);
+
+      if($data->work_start_time == 'ischecked'){
+        return redirect('/')->disable($data->work_start_time, $rest->rest_end_time);
+      }
       
       return redirect('/');
     }
@@ -52,37 +56,54 @@ class AttendanceController extends Controller
       ];
       
       Attendance::where('user_id', $id)->where('date', $date)->update($data);
+
+      if($data->work_end_time == 'ischecked'){
+        return redirect('/')->disable($data->work_end_time, $rest->rest_start_time);
+      }
       
       return redirect('/');
     }
 
-    public function restStart(Request $request)
+    public function restStart()
     {
+      $id = Auth::id();
 
       $dt = new Carbon();
       $time = $dt->toTimeString();
 
-      $rest = $request->only([
+      $rest = [ 
+        'attendance_id' => $id,                              
         'rest_start_time' => $time,
-      ]);
+      ];
 
       Rest::create($rest);
       
+      if($rest->rest_start_time == 'ischecked'){
+        return redirect('/')->disable($data->work_end_time, $rest->rest_start_time);
+      }
+
       return redirect('/');
     }
 
     public function restEnd(Request $request)
     {
+      $id = Auth::id();
 
       $dt = new carbon;
       $time = $dt->toTimeString();    
 
-      $rest = $request->only([ 
+      $rest = [ 
         'rest_end_time' => $time
-      ]);
+      ];
+
+      $rest = $request->only(['attendance_id', 'rest_start_time', 'rest_end_time']);
 
       Rest::find($request->id)->update($rest);
       
+      if($rest->rest_end_time == 'ischecked'){
+        return redirect('/')->disable($data->work_start_time, $rest->rest_end_time);
+      }
+
       return redirect('/');
     }
 
@@ -91,31 +112,21 @@ class AttendanceController extends Controller
         $datas = Attendance::Paginate(5);
 
         $dt = new Carbon;
-        $time = $dt->toTimeString();
-        $time1 = $dt->toTimeString();
- 
-        $data = [
-        'rest_start_time' => $time,
-        'rest_end_time' => $time1
+        $rest_time = $dt->setTime();
+        
+        $rest_time = [
+        'rest_start_time',
+        'rest_end_time',
       ];
-
-        echo $time->diffInHours($time1);
-        echo $time->diffInMinutes($time1);
-        echo $time->diffInSeconds($time1);
 
         $dt = new Carbon;
-        $time = $dt->toTimeString();
-        $time1 = $dt->toTimeString();
+        $work_time = $dt->setTime();
  
-        $data = [
-        'work_start_time' => $time,
-        'work_end_time' => $time1
+        $work_time = [
+        'work_start_time',
+        'work_end_time'
       ];
 
-        echo $time->diffInHours($time1);
-        echo $time->diffInMinutes($time1);
-        echo $time->diffInSeconds($time1);
-
-        return view('attendance', ['datas' => $datas, 'data' => $data]);
+        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time]);
     }
 }

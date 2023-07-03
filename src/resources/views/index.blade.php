@@ -39,9 +39,6 @@
         <form class="attendance__button" action="/rest/start" method="post">
           @csrf
           <button class="attendance__button-submit" id="submit"popovertarget>休憩開始</button>
-          @foreach($rests as $rest)
-          <input type="hidden" name="rest_start_time" value="{{ $rest['rest_start_time'] }}">
-          @endforeach
         </form>
       </div>
       <div class="attendamce__panel-4">
@@ -49,8 +46,8 @@
           @csrf
           <button class="attendance__button-submit" id="submit" name="submit" popovertarget>休憩終了</button>
           @foreach($rests as $rest)
-          <input type="hidden" name="rest_end_time" value="{{ $rest['rest_end_time'] }}">
-          <input type="hidden" name="id" value="{{ $rest['id'] }}">
+          <input type="hidden" name="rest_end_time" id="rest_end_time" value="{{ $rest['rest_end_time'] }}">
+          <input type="hidden" name="id" id="id" value="{{ $rest['id'] }}">
           @endforeach
         </form>
       </div>

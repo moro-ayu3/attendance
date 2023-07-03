@@ -22,8 +22,8 @@
         <td class="attendance-table__item">{{ Auth::user()->name }}</td>
         <td class="attendance-table__item">{{ $data->work_start_time }}</td>
         <td class="attendance-table__item">{{ $data->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $data($time)->diffInHours->diffInMinutes->diffInSeconds($data($time1)) }}</td>
-        <td class="attendance-table__item">{{ $data($time)->diffInHours->diffInMinutes->diffInSeconds($data($time1)) }}</td>
+        <td class="attendance-table__item">{{ $rest_time }}</td>
+        <td class="attendance-table__item">{{ $work_time }}</td>
       </tr>
       @endforeach
     </table>
