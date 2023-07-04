@@ -74,6 +74,6 @@
   cursor: pointer;
 }
 
-.attendance__button-submit::backdrop {
+.attendance__button-submit::backdrop(.disable) {
   color: #ddd;
 }

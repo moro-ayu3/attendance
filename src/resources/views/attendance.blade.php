@@ -22,8 +22,8 @@
         <td class="attendance-table__item">{{ Auth::user()->name }}</td>
         <td class="attendance-table__item">{{ $data->work_start_time }}</td>
         <td class="attendance-table__item">{{ $data->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $rest_time }}</td>
-        <td class="attendance-table__item">{{ $work_time }}</td>
+        <td class="attendance-table__item">{{ $rest_time['rest_start_time']['rest_end_time'] }}</td>
+        <td class="attendance-table__item">{{ $work_time['work_start_time'] ['work_end_time'] }}</td>
       </tr>
       @endforeach
     </table>
