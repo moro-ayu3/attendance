@@ -14,8 +14,9 @@ class AttendanceController extends Controller
 {
     public function index()
     { 
+      $attendances = Attendance::with('rest')->get();
       $rests = Rest::all();
-      return view('index', ['rests' => $rests]);
+      return view('index', ['attendances' => $attendances, 'rests' => $rests]);
     }
 
     public function workStart()
@@ -63,21 +64,20 @@ class AttendanceController extends Controller
       return redirect('/');
     }
 
-    public function restStart()
+    public function restStart(Request $request)
     {
-      $id = Auth::id();
+      $id = Attendance::find($request->id);
 
       $dt = new Carbon();
-      $date = $dt->toDateString();
       $time = $dt->toTimeString();
 
-      $data = [ 
-        'attendance_id' => $id, $date,                             
+      $data = [
+        'attendance_id' => $id,
         'rest_start_time' => $time,
       ];
 
       Rest::create($data);
-      
+
       if($time == 'ischecked'){
         return redirect('/')->disable($time->work_end_time, $time->rest_start_time);
       }
@@ -87,20 +87,17 @@ class AttendanceController extends Controller
 
     public function restEnd(Request $request)
     {
-      $id = Auth::id();
+      $id = Attendance::find($request->id);
 
-      $dt = new carbon;
-      $date = $dt->toDateString();
-      $time = $dt->toTimeString();    
+      $dt = new Carbon();
+      $time = $dt->toTimeString();
 
-      $data = [ 
-        'rest_end_time' => $time
+      $data = [
+        'rest_end_time' => $time,
       ];
 
-      $rest = $request->only(['attendance_id', 'rest_start_time', 'rest_end_time']);
+      Rest::where('attendance_id', $id)->update($data);
 
-      Rest::find($request->id)->update($data, $rest);
-      
       if($time == 'ischecked'){
         return redirect('/')->disable($time->work_start_time, $time->rest_end_time);
       }
@@ -122,12 +119,14 @@ class AttendanceController extends Controller
         'rest_end_time' => $hour, $minute, $second,
       ];
 
-        $dt = new Carbon;
-        $work_time = $dt->setTime();
+        $hour = 9;
+        $minute = 0;
+        $second = 0;
+        echo Carbon::createFromTime($hour, $minute, $second);
  
         $work_time = [
-        'work_start_time',
-        'work_end_time'
+        'work_start_time' => $hour, $minute, $second,
+        'work_end_time' => $hour, $minute, $second
       ];
 
         return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time]);

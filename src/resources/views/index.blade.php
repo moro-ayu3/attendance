@@ -44,9 +44,7 @@
       <div class="attendamce__panel-4">
         <form class="attendance__button-1" action="/rest/end" method="post">
           @csrf
-          @foreach($rests as $rest)
-          <button class="attendance__button-submit" id="submit" name="submit" value="{{ $rest->id }}" disable="disabled" popovertarget>休憩終了</button>
-          @endforeach
+          <button class="attendance__button-submit" id="submit" disable="disabled" popovertarget>休憩終了</button>
         </form>
       </div>
     </div>
