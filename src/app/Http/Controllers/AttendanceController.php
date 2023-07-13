@@ -14,9 +14,7 @@ class AttendanceController extends Controller
 {
     public function index()
     { 
-      $attendances = Attendance::with('rest')->get();
-      $rests = Rest::all();
-      return view('index', ['attendances' => $attendances, 'rests' => $rests]);
+      return view('index');
     }
 
     public function workStart()
@@ -35,8 +33,8 @@ class AttendanceController extends Controller
 
       Attendance::create($data);
 
-      if($time == 'ischecked'){
-        return redirect('/')->disable($time->work_start_time, $time->rest_end_time);
+      if($data !== null){
+        return redirect('/')->disable($time);
       }
       
       return redirect('/');
@@ -64,39 +62,43 @@ class AttendanceController extends Controller
       return redirect('/');
     }
 
-    public function restStart(Request $request)
+    public function restStart()
     {
-      $id = Attendance::find($request->id);
+      $user_id = Auth::id();
 
       $dt = new Carbon();
+      $date = $dt->toDateString();
       $time = $dt->toTimeString();
 
+      $attendance = Attendance::where('user_id', $user_id)->where('date', $date)->first();
+      $attendance_id = $attendance->id;
+
       $data = [
-        'attendance_id' => $id,
+        'attendance_id' => $attendance_id,
         'rest_start_time' => $time,
       ];
 
       Rest::create($data);
-
-      if($time == 'ischecked'){
-        return redirect('/')->disable($time->work_end_time, $time->rest_start_time);
-      }
-
+      
       return redirect('/');
     }
 
-    public function restEnd(Request $request)
+    public function restEnd()
     {
-      $id = Attendance::find($request->id);
+      $user_id = Auth::id();
 
       $dt = new Carbon();
+      $date = $dt->toDateString();
       $time = $dt->toTimeString();
+
+      $attendance = Attendance::where('user_id', $user_id)->where('date', $date)->first();
+      $attendance_id = $attendance->id;
 
       $data = [
         'rest_end_time' => $time,
       ];
 
-      Rest::where('attendance_id', $id)->update($data);
+      Rest::where('attendance_id', $attendance_id)->update($data);
 
       if($time == 'ischecked'){
         return redirect('/')->disable($time->work_start_time, $time->rest_end_time);
@@ -108,6 +110,10 @@ class AttendanceController extends Controller
     public function show()
     {
         $datas = Attendance::Paginate(5);
+
+        $dt = new Carbon();
+        $yestarday = $dt->toDateString('yesterday');
+        $tommorow = $dt->toDateString('tomorrow');
 
         $hour = 1;
         $minute = 0;
@@ -129,6 +135,6 @@ class AttendanceController extends Controller
         'work_end_time' => $hour, $minute, $second
       ];
 
-        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time]);
+        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'yesterday' => $yesterday, 'tomorrow' => $tomorrow]);
     }
 }

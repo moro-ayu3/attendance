@@ -34,6 +34,9 @@ a {
 }
 
 .attendance-table__row {
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid #000;
 }
 
@@ -47,6 +50,9 @@ a {
 .attendance-table__item {
   padding: 12px;
   width: 20%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid #000;
 }
 

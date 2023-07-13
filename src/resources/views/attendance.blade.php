@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-  @foreach($datas as $data)
-  <h3 class="attendance-date"><a href="#">&lt;</a>{{ $data->date }}<a href="#">&gt;</a></h3>
-  @endforeach
+  <h3 class="attendance-date"><a href="/attendances">&lt;{{ $yesterday }}</a>{{ $dt }}<a href="/attendances">&gt;{{ $tomorrow }}</a></h3>
   <div class="attendance-table">
     <table class="attendance-table__inner">
       <tr class="attendance-table__row">
@@ -22,8 +20,8 @@
         <td class="attendance-table__item">{{ Auth::user()->name }}</td>
         <td class="attendance-table__item">{{ $data->work_start_time }}</td>
         <td class="attendance-table__item">{{ $data->work_end_time }}</td>
-        <td class="attendance-table__item">{{ $rest_time['rest_start_time']['rest_end_time'] }}</td>
-        <td class="attendance-table__item">{{ $work_time['work_start_time']['work_end_time'] }}</td>
+        <td class="attendance-table__item"></td>
+        <td class="attendance-table__item"></td>
       </tr>
       @endforeach
     </table>
