@@ -5,7 +5,13 @@
 @endsection
 
 @section('content')
-  <h3 class="attendance-date"><a href="/attendances">&lt;{{ $yesterday }}</a>{{ $dt }}<a href="/attendances">&gt;{{ $tomorrow }}</a></h3>
+  <div class="date">
+    <button class="date_button"><a href="/attendances">&lt;{{ $yesterday }}</a></button>
+  </div>
+  <h3 class="attendance-date">{{ $dt }}</h3>
+  <div class="date">
+    <button class="date_button"><a href="/attendances">&gt;{{ $tomorrow }}</a></button>
+  </div>
   <div class="attendance-table">
     <table class="attendance-table__inner">
       <tr class="attendance-table__row">

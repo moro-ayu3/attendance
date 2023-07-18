@@ -1,3 +1,14 @@
+.date_button {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid blue;
+  border-radius: 3px;
+}
+
+
 .attendance-date {
   display: flex;
   justify-content: center;

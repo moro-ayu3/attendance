@@ -19,6 +19,11 @@ class AttendanceController extends Controller
 
     public function workStart()
     {
+      $today = Carbon::today();
+      Attendance::where('date', $today)->first();
+
+      if($today===null){
+
       $id = Auth::id();
 
       $dt = new Carbon();
@@ -33,15 +38,20 @@ class AttendanceController extends Controller
 
       Attendance::create($data);
 
-      if($data !== null){
-        return redirect('/')->disable($time);
-      }
+    }else{
+      $data = "disable";
+    }
       
       return redirect('/');
     }
 
     public function workEnd()
     {
+      $today = Carbon::today();
+      Attendance::where('date', $today)->first();
+
+      if($today){
+
       $id = Auth::id();
 
       $dt = new carbon;
@@ -54,16 +64,21 @@ class AttendanceController extends Controller
       ];
       
       Attendance::where('user_id', $id)->where('date', $date)->update($data);
-
-      if($time == 'ischecked'){
-        return redirect('/')->disable($time->work_end_time, $time->rest_start_time);
-      }
+    
+    }else{
+      $data = "disable";
+    }
       
       return redirect('/');
     }
 
     public function restStart()
     {
+      $today = Carbon::today();
+      Attendance::where('date', $today)->first();
+
+      if($today){
+
       $user_id = Auth::id();
 
       $dt = new Carbon();
@@ -79,12 +94,20 @@ class AttendanceController extends Controller
       ];
 
       Rest::create($data);
-      
+    }else{
+      $data = "disable";
+    }
+
       return redirect('/');
     }
 
     public function restEnd()
     {
+      $today = Carbon::today();
+      Attendance::where('date', $today)->first();
+
+      if($today){
+
       $user_id = Auth::id();
 
       $dt = new Carbon();
@@ -100,10 +123,9 @@ class AttendanceController extends Controller
 
       Rest::where('attendance_id', $attendance_id)->update($data);
 
-      if($time == 'ischecked'){
-        return redirect('/')->disable($time->work_start_time, $time->rest_end_time);
-      }
-
+    }else{
+      $data = "disable";
+    }
       return redirect('/');
     }
 
