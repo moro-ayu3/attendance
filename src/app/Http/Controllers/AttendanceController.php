@@ -14,15 +14,37 @@ class AttendanceController extends Controller
 {
     public function index()
     { 
-      return view('index');
+      $user_id = Auth::id();
+
+      $today = Carbon::today();
+
+      $attendance = Attendance::where('user_id', $user_id)->where('date', $today)->first();
+
+      if(empty($attendance)){
+        //　出勤していない
+        return view('index')->with(["is_attendance_start" => true]);
+      } 
+
+      $rest = $attendance->rests->whereNull('rest_end_time')->first();
+      
+      // 勤務終了後
+      if ($attendance->work_end_time){
+        return view('index');
+      }
+
+      // 勤務開始後
+      if ($attendance->work_start_time){
+        if (isset($rest)){
+          return view('index')->with(["is_rest_end" => true]);
+        } else {
+          return view('index')->with(["is_attendance_end" => true,
+          "is_rest_start" => true]);
+        }
+      }
     }
 
     public function workStart()
     {
-      $today = Carbon::today();
-      Attendance::where('date', $today)->first();
-
-      if($today===null){
 
       $id = Auth::id();
 
@@ -37,10 +59,6 @@ class AttendanceController extends Controller
       ];
 
       Attendance::create($data);
-
-    }else{
-      $data = "disable";
-    }
       
       return redirect('/');
     }
@@ -66,7 +84,7 @@ class AttendanceController extends Controller
       Attendance::where('user_id', $id)->where('date', $date)->update($data);
     
     }else{
-      $data = "disable";
+      $data = "disabled";
     }
       
       return redirect('/');
@@ -95,7 +113,7 @@ class AttendanceController extends Controller
 
       Rest::create($data);
     }else{
-      $data = "disable";
+      $data = "disabled";
     }
 
       return redirect('/');
@@ -124,7 +142,7 @@ class AttendanceController extends Controller
       Rest::where('attendance_id', $attendance_id)->update($data);
 
     }else{
-      $data = "disable";
+      $data = "disabled";
     }
       return redirect('/');
     }
@@ -133,9 +151,9 @@ class AttendanceController extends Controller
     {
         $datas = Attendance::Paginate(5);
 
-        $dt = new Carbon();
-        $yestarday = $dt->toDateString('yesterday');
-        $tommorow = $dt->toDateString('tomorrow');
+        $today = Carbon::today();
+        $yestarday = Carbon::yestarday();
+        $tommorow = Carbon::tomorrow();
 
         $hour = 1;
         $minute = 0;
@@ -157,6 +175,6 @@ class AttendanceController extends Controller
         'work_end_time' => $hour, $minute, $second
       ];
 
-        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'yesterday' => $yesterday, 'tomorrow' => $tomorrow]);
+        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'yesterday' => $yesterday, 'today' => $today, 'tomorrow' => $tomorrow]);
     }
 }

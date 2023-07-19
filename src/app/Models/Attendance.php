@@ -18,11 +18,11 @@ class Attendance extends Model
         'work_end_time'
     ];
 
-    public function user()
+    public function users()
     {
         return $this->BelongsTo(User::class);
     }
-    public function rest()
+    public function rests()
     {
         return $this->hasMany(Rest::class);
     }

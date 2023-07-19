@@ -8,7 +8,7 @@
   <div class="date">
     <button class="date_button"><a href="/attendances">&lt;{{ $yesterday }}</a></button>
   </div>
-  <h3 class="attendance-date">{{ $dt }}</h3>
+  <h3 class="attendance-date">{{ $today }}</h3>
   <div class="date">
     <button class="date_button"><a href="/attendances">&gt;{{ $tomorrow }}</a></button>
   </div>
