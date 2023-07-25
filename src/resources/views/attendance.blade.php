@@ -6,11 +6,11 @@
 
 @section('content')
   <div class="date">
-    <button class="date_button"><a href="/attendances">&lt;{{ $yesterday }}</a></button>
+    <button class="date_button"><a href="/attendances">&lt;{{ $now }}</a></button>
   </div>
-  <h3 class="attendance-date">{{ $today }}</h3>
+  <h3 class="attendance-date">{{ $now }}</h3>
   <div class="date">
-    <button class="date_button"><a href="/attendances">&gt;{{ $tomorrow }}</a></button>
+    <button class="date_button"><a href="/attendances">&gt;{{ $now }}</a></button>
   </div>
   <div class="attendance-table">
     <table class="attendance-table__inner">

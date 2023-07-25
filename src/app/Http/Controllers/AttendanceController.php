@@ -124,11 +124,15 @@ class AttendanceController extends Controller
 
     public function show()
     {
-        $datas = Attendance::Paginate(5);
+        $now = now()->format('Y-m-d');
+        echo date('Y-m-d', strtotime($now . '-1 day')); 
+        echo date('Y-m-d', strtotime($now));
+        echo date('Y-m-d', strtotime($now . '+1 day')); 
 
-        $today = Carbon::today();
-        $yestarday = Carbon::yestarday();
-        $tommorow = Carbon::tomorrow();
+
+        $datas = Attendance::select('user_id','work_start_time', 'work_end_time')->get()
+                ->paginate(5);
+
 
         $hour = 1;
         $minute = 0;
@@ -150,6 +154,6 @@ class AttendanceController extends Controller
         'work_end_time' => $hour, $minute, $second
       ];
 
-        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'yesterday' => $yesterday, 'today' => $today, 'tomorrow' => $tomorrow]);
+        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'now' => $now]);
     }
 }
