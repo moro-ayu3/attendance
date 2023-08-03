@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/attendance.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/attendance.css') }}"> -->
 @endsection
 
 @section('content')
   <div class="date">
-    <button class="date_button"><a href="/attendances">&lt;{{ $now }}</a></button>
+    <button class="date_button"><a href="{!! '/attendances/' . ($num - 1) !!}">&lt;</a></button>
   </div>
-  <h3 class="attendance-date">{{ $now }}</h3>
+  <h3 class="attendance-date">{{ $fixed_date }}</h3>
   <div class="date">
-    <button class="date_button"><a href="/attendances">&gt;{{ $now }}</a></button>
+    <button class="date_button"><a href="{!! '/attendances/' . ($num + 1) !!}">&gt;</a></button>
   </div>
   <div class="attendance-table">
     <table class="attendance-table__inner">
@@ -21,11 +21,13 @@
         <th class="attendance-table__header">休憩時間</th>
         <th class="attendance-table__header">勤務時間</th>
       </tr>
-      @foreach ($datas as $data)
+
+      @foreach($attendances as $attendance)
+      {{ $attendance }}
       <tr class="attendance-table__row">
-        <td class="attendance-table__item">{{ Auth::user()->name }}</td>
-        <td class="attendance-table__item">{{ $data->work_start_time }}</td>
-        <td class="attendance-table__item">{{ $data->work_end_time }}</td>
+        <td class="attendance-table__item"></td>
+        <td class="attendance-table__item"></td>
+        <td class="attendance-table__item"></td>
         <td class="attendance-table__item"></td>
         <td class="attendance-table__item"></td>
       </tr>
@@ -33,7 +35,7 @@
     </table>
   </div>
   <div class="table-page">
-      {{ $datas->appends(request()->input())->links('pagination::bootstrap-4') }}
+      
   </div>
 </div>
 @endsection

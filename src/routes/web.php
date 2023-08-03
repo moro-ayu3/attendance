@@ -15,7 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
      Route::post('/work/end', [AttendanceController::class, 'workEnd']);
      Route::post('/rest/start', [AttendanceController::class, 'restStart']);
      Route::post('/rest/end', [AttendanceController::class, 'restEnd']);
-     Route::get('/attendances', [AttendanceController::class, 'show']);
+     Route::get('/attendances/{num}', [AttendanceController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

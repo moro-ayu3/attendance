@@ -122,38 +122,23 @@ class AttendanceController extends Controller
       return redirect('/');
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $now = now()->format('Y-m-d');
-        echo date('Y-m-d', strtotime($now . '-1 day')); 
-        echo date('Y-m-d', strtotime($now));
-        echo date('Y-m-d', strtotime($now . '+1 day')); 
+        $num = (int)$request->num;
+        $dt = new Carbon();
 
+        if ($num == 0){
+          $date = $dt;
+        } elseif ($num < 0){
+          $date = $dt->subDays(-$num);
+        } else {
+          $date = $dt->addDays($num);
+        };
 
-        $datas = Attendance::select('user_id','work_start_time', 'work_end_time')->get()
-                ->paginate(5);
+        $fixed_date = $date->toDateString();
 
+        $attendances = Attendance::where('date', $fixed_date);
 
-        $hour = 1;
-        $minute = 0;
-        $second = 0;
-        echo Carbon::createFromTime($hour, $minute, $second);
-        
-        $rest_time = [
-        'rest_start_time' => $hour, $minute, $second,
-        'rest_end_time' => $hour, $minute, $second,
-      ];
-
-        $hour = 9;
-        $minute = 0;
-        $second = 0;
-        echo Carbon::createFromTime($hour, $minute, $second);
- 
-        $work_time = [
-        'work_start_time' => $hour, $minute, $second,
-        'work_end_time' => $hour, $minute, $second
-      ];
-
-        return view('attendance', ['datas' => $datas, 'rest_time' => $rest_time, 'work_time' => $work_time, 'now' => $now]);
+        return view('attendance', compact("attendances", "num", "fixed_date"));
     }
 }
