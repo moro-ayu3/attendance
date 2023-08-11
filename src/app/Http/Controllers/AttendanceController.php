@@ -137,8 +137,23 @@ class AttendanceController extends Controller
 
         $fixed_date = $date->toDateString();
 
-        $attendances = Attendance::where('date', $fixed_date);
+        $attendances = Attendance::where('date', $fixed_date)->get();
 
-        return view('attendance', compact("attendances", "num", "fixed_date"));
+        $rests = Rest::all();
+
+        $dt = new Carbon();
+        $time = $dt->toTimeString();
+
+        $rest = Rest::where('rest_start_time', $time)->where('rest_end_time', $time)->first();
+
+        foreach($rests as $rest){
+          $rest_first_time = ($rest->rest_end_time) - ($rest->rest_start_time);
+          $rest_time += $rest;
+        }
+
+        $attendance = Attendance::where('work_start_time', $time)->where('work_end_time', $time)->first();
+        $work_time = ($attendance->work_end_time) - ($attendance->work_start_time) - $rest_time;
+
+        return view('attendance', compact('attendances', 'num', 'fixed_date', 'rests', 'rest', 'rest_time', 'attendance', 'work_time'));
     }
 }

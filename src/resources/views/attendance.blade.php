@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<!-- <link rel="stylesheet" href="{{ asset('css/attendance.css') }}"> -->
+<link rel="stylesheet" href="{{ asset('css/attendance.css') }}">
 @endsection
 
 @section('content')
@@ -23,19 +23,18 @@
       </tr>
 
       @foreach($attendances as $attendance)
-      {{ $attendance }}
       <tr class="attendance-table__row">
-        <td class="attendance-table__item"></td>
-        <td class="attendance-table__item"></td>
-        <td class="attendance-table__item"></td>
-        <td class="attendance-table__item"></td>
-        <td class="attendance-table__item"></td>
+        <td class="attendance-table__item">{{ $attendance->users->name }}</td>
+        <td class="attendance-table__item">{{ $attendance->work_start_time }}</td>
+        <td class="attendance-table__item">{{ $attendance->work_end_time }}</td>
+        <td class="attendance-table__item">{{ $attendance->rests->rest_time }}</td>
+        <td class="attendance-table__item">{{ $attendance->work_time }}</td>
       </tr>
       @endforeach
     </table>
   </div>
   <div class="table-page">
-      
+     
   </div>
 </div>
 @endsection
