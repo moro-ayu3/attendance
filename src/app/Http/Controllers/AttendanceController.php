@@ -117,7 +117,7 @@ class AttendanceController extends Controller
         'rest_end_time' => $time,
       ];
 
-      Rest::where('attendance_id', $attendance_id)->update($data);
+      Rest::where('attendance_id', $attendance_id)->where('rest_start_time', $time)->update($data);
       
       return redirect('/');
     }
@@ -146,8 +146,10 @@ class AttendanceController extends Controller
 
         $rest = Rest::where('rest_start_time', $time)->where('rest_end_time', $time)->first();
 
+        $rest_time = ($rest->rest_end_time) - ($rest->rest_start_time);
+
         foreach($rests as $rest){
-          $rest_first_time = ($rest->rest_end_time) - ($rest->rest_start_time);
+          $rest_time = ($rest->rest_end_time) - ($rest->rest_start_time);
           $rest_time += $rest;
         }
 
